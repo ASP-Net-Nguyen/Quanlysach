@@ -19,5 +19,10 @@ namespace Quanlysach.Repository
             new Book {Id = 6, Title = "ASP.Net", Publisher = "ABC6", Year = 2021, Authors = "xsd6"},
         };
         public Book Get(int id) => Books.SingleOrDefault(b => b.Id == id);
+        public bool Delete(int id)
+        {
+            var book = Get(id);
+            return book != null ? Books.Remove(book) : false;
+        }
     }
 }

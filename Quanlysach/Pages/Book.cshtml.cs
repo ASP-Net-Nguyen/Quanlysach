@@ -22,5 +22,16 @@ namespace Quanlysach.Pages
             Book = _repository.Get(id);
             ViewData["Title"] = Book == null ? "not found" : $"Details - {Book.Title}";
         }
+        public void OnGetDelete(int id)
+        {
+            Job = Action.Delete;
+            Book = _repository.Get(id);
+            ViewData["Title"] = Book == null ? "not found" : $"Confirm deleteing - {Book.Title}";
+        }
+        public IActionResult OnGetConfirm(int id)
+        {
+            _repository.Delete(id);
+            return new RedirectToPageResult("index");
+        }
     }
 }

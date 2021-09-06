@@ -14,6 +14,13 @@
         case BookModel.Action.Update:
             break;
         case BookModel.Action.Delete:
+            template(readOnly: true, errorMessage: "not found");
+            if(Model.Book != null)
+                    {
+                        <p class="text-danger tex-center">Bạn thật sự muốn xóa</p>
+                        <a class="btn btn-danger btn-block mb-2" href="/book/@Model.Book.Id?handler=confirm">Delete</a>
+                    }
+            <a class="btn btn-danger btn-block mb-2" href="/">return</a>
             break;
     }
 </div>
