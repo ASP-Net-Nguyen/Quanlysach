@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <p class="h3 p-3">ASP.Net Razor pages</p>
+    <div>
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Tác giả</th>
+                    <th>Nhà xuất bản</th>
+                    <th>Năm xuất bản</th>
+                    <th>Mô tả</th>
+                    <th>Xem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model.Books)
+            {
+                <tr>
+                    <td>@b.Title</td>
+                    <td>@b.Authors</td>
+                    <td>@b.Publisher</td>
+                    <td>@b.Year
+                    <td>@b.Description</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="/book/@b.Id">Details</a>
+                    </td>
+                </tr>
+            }
+                <tr>
+                    <td colspan="5"><strong>Tổng của sách: @Model.Count</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
