@@ -10,5 +10,6 @@ namespace Quanlysach.Interface
     {
         public HashSet<Book> Books { get; set; }
         public Book Get(int id);
+        public bool Delete(int id);
     }
 }
