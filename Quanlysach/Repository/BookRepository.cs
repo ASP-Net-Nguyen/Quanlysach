@@ -24,5 +24,12 @@ namespace Quanlysach.Repository
             var book = Get(id);
             return book != null ? Books.Remove(book) : false;
         }
+        public Book Create()
+        {
+            var max = Books.Max(b => b.Id);
+            var book = new Book() { Id = ++max };
+            return book;
+        }
+        public bool Add(Book book) => Books.Add(book);
     }
 }

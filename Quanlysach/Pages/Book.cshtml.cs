@@ -33,5 +33,16 @@ namespace Quanlysach.Pages
             _repository.Delete(id);
             return new RedirectToPageResult("index");
         }
+        public void OnGetCreate()
+        {
+            Job = Action.Create;
+            Book = _repository.Create();
+            ViewData["Title"] = "Create new book";
+        }
+        public IActionResult OnPostCreate(Book book)
+        {
+            _repository.Add(book);
+            return new RedirectToPageResult("index");
+        }
     }
 }
