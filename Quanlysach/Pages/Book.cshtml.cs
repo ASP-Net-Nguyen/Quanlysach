@@ -44,5 +44,16 @@ namespace Quanlysach.Pages
             _repository.Add(book);
             return new RedirectToPageResult("index");
         }
+        public void OnGetUpdate(int id)
+        {
+            Job = Action.Create;
+            Book = _repository.Get(id);
+            ViewData["Title"] = Book == null ? "not found" : $"Confirm deleteing - {Book.Title}";
+        }
+        public IActionResult OnPostUpdate(Book book)
+        {
+            _repository.Update(book);
+            return new RedirectToPageResult("index");
+        }
     }
 }

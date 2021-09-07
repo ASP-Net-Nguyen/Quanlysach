@@ -13,20 +13,22 @@
             await form();
             break;
         case BookModel.Action.Update:
+            await forms();
             break;
         case BookModel.Action.Delete:
             template(readOnly: true, errorMessage: "not found");
-            if(Model.Book != null)
-                    {
-                        <p class="text-danger tex-center">Bạn thật sự muốn xóa</p>
-                        <a class="btn btn-danger btn-block mb-2" href="/book/@Model.Book.Id?handler=confirm">Delete</a>
-                    }
+            if (Model.Book != null)
+            {
+                <p class="text-danger tex-center">Bạn thật sự muốn xóa</p>
+                <a class="btn btn-danger btn-block mb-2" href="/book/@Model.Book.Id?handler=confirm">Delete</a>
+            }
             <a class="btn btn-danger btn-block mb-2" href="/">return</a>
             break;
     }
 </div>
 @{
-    void template(bool readOnly = true, string errorMessage = ""){
+    void template(bool readOnly = true, string errorMessage = "")
+    {
         if (Model.Book == null)
         {
             <p class="h5 text-center text-danger mb-4">@errorMessage</p>
@@ -37,8 +39,11 @@
         <label for="title" class="">Tiêu đề</label>
         <input name="title" type="text" class="form-control mb-2" id="title" value="@Model.Book.Title" @(readOnly ? "readonly" : "") />
 
-        <label for="author" class="">Tác giả</label>
-        <input name="author" type="text" class="form-control mb-2" id="author" value="@Model.Book.Authors" @(readOnly ? "readonly" : "") />
+        <label for="authors" class="">Tác giả</label>
+        <input name="authors" type="text" class="form-control mb-2" id="authors" value="@Model.Book.Authors" @(readOnly ? "readonly" : "") />
+
+@*        <label for="author" class="">Tác giả</label>
+        <input name="author" type="text" class="form-control mb-2" id="author" value="@Model.Book.Author" @(readOnly ? "readonly" : "") />*@
 
         <label for="publisher" class="">Nhà xuất bản</label>
         <input name="publisher" type="text" class="form-control mb-2" id="publisher" value="@Model.Book.Publisher" @(readOnly ? "readonly" : "") />
@@ -49,13 +54,22 @@
         <label for="description" class="">Mô tả</label>
         <input name="description" type="text" class="form-control mb-2" id="description" value="@Model.Book.Description" @(readOnly ? "readonly" : "") />
     }
-    async Task form (string handler = "create")
-            {
-                <form method="post" href="?handler=@handler">
-                    @{ template(false);}
-                    <button type="submit" class="btn btn-primary btn-block mb-2">Save</button>
-                    <button type="reset" class="btn btn-primary btn-block mb-2">Reset</button>
-                </form>
-                <a class="btn btn-info btn-block mb-2" href="/">Return</a>
-            }
+    async Task form(string handler = "create")
+    {
+        <form method="post" href="?handler=@handler">
+            @{ template(false);}
+            <button type="submit" class="btn btn-primary btn-block mb-2">Save</button>
+            <button type="reset" class="btn btn-primary btn-block mb-2">Reset</button>
+        </form>
+        <a class="btn btn-info btn-block mb-2" href="/">Return</a>
+    }
+    async Task forms(string handler = "update")
+    {
+        <form method="post" href="?handler=@handler">
+            @{ template(false);}
+            <button type="submit" class="btn btn-primary btn-block mb-2">Save</button>
+            <button type="reset" class="btn btn-primary btn-block mb-2">Reset</button>
+        </form>
+        <a class="btn btn-info btn-block mb-2" href="/">Return</a>
+    }
 }

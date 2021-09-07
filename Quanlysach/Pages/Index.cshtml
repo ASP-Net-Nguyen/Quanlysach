@@ -13,19 +13,22 @@
                 <tr>
                     <th>Tiêu đề</th>
                     <th>Tác giả</th>
+@*                    <th>Tác giả</th>*@
                     <th>Nhà xuất bản</th>
                     <th>Năm xuất bản</th>
                     <th>Mô tả</th>
                     <th>Xem</th>
                     <th>Xóa</th>
+                    <th>Sửa</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var b in Model.Books)
-            {
+                {
                 <tr>
                     <td>@b.Title</td>
                     <td>@b.Authors</td>
+@*                    <td>@b.Author</td>*@
                     <td>@b.Publisher</td>
                     <td>@b.Year
                     <td>@b.Description</td>
@@ -35,12 +38,17 @@
                     <td>
                         <a class="btn btn-danger btn-sm" href="/book/@b.Id?handler=delete">Delete</a>
                     </td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" href="/book/@b.Id?handler=update">Update</a>
+                    </td>
                 </tr>
-            }
-                <tr>
-                    <td colspan="5"><strong>Tổng của sách: @Model.Count</strong></td>
-                </tr>
+                }
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7"><strong>Tổng Số sách: @Model.Count</strong></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
