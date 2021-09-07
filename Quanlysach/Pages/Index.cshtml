@@ -7,6 +7,7 @@
 <div class="text-center">
     <p class="h3 p-3">ASP.Net Razor pages</p>
     <div>
+        <a class="btn btn-primary btn-sm m-2" href="/book?handler=create">Add new book</a>
         <table class="table table-bordered table-sm">
             <thead class="thead-light">
                 <tr>
@@ -16,6 +17,7 @@
                     <th>Năm xuất bản</th>
                     <th>Mô tả</th>
                     <th>Xem</th>
+                    <th>Xóa</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +31,9 @@
                     <td>@b.Description</td>
                     <td>
                         <a class="btn btn-info btn-sm" href="/book/@b.Id">Details</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="/book/@b.Id?handler=delete">Delete</a>
                     </td>
                 </tr>
             }
